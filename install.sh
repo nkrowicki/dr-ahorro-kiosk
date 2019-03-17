@@ -12,6 +12,8 @@ if [ "$(type -t log)" != 'function' ]; then
         source log4bash.sh
 fi
 
+log "Start Install.sh"
+
 # Vars
 scriptUpdate="update.sh"
 TODAY=$(date +%F)
@@ -49,7 +51,6 @@ apt-get autoremove -y
 echo "Update our installation of Raspbian."
 apt-get update
 apt-get upgrade
-
 
 echo "Install xdtotool, unclutter and sed"
 echo "xdotool: Allow our bash script to execute key presses withouth anyone being on the device"
@@ -128,6 +129,8 @@ rm mycron
 
 echo "Add execution permissions"
 chmod +x *.sh
+
+log "End Install.sh ->  Reboot System"
 
 echo "Reboot System"
 sudo shutdown -r now
