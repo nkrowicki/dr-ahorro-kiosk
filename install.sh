@@ -102,11 +102,18 @@ jq '.url = $newVal' --arg newVal $url $fileConfig > tmp.$$.json && mv tmp.$$.jso
 jq '.zoom = $newVal' --arg newVal $zoom $fileConfig > tmp.$$.json && mv tmp.$$.json $fileConfig
 
 
+echo
 echo "Add crontab line for run update each 30 minutes"
-crontab -l > mycron
-echo "*/30 * * * * sudo ${pathProject}/$scriptUpdate" >> mycron
-crontab mycron
+crontabLine="*/30 * * * * sudo ${pathProject}/$scriptUpdate"
+crontab -u pi -l > mycron
+if ! grep -q "$crontabLine" mycron 
+then
+    # code if not found
+    crontab -u pi mycron
+fi
 rm mycron
+
+
 
 echo "Add execution permissions"
 chmod +x *.sh
