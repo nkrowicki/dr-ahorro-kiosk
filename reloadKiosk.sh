@@ -13,8 +13,9 @@ if [ "$(type -t log)" != 'function' ]; then
 fi
 
 function reloadKiosk {
+   log "Start reloadKiosk"
    pkill -f kiosk.sh
    pkill chromium
    bash kiosk.sh
-   log "Reload end"
+   log "End reloadKiosk"
 }

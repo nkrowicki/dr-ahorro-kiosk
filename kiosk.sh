@@ -24,21 +24,21 @@ if [ ! $(systemctl -q is-active ssh) ]; then
     sudo systemctl start ssh
 fi
 
-log Hide the mouse from the display whenever it has been idle for longer then 0.5 seconds
+log "Hide the mouse from the display whenever it has been idle for longer then 0.5 seconds"
 unclutter -idle 0.5 -root &
 
-log Disable scren saver
+log "Disable scren saver"
 xset s noblank
 xset s off
 xset -dpms
 
-log Use sed to search throught the Chromium preferences file and clear out any flags that would make the warning bar appear, a behavior you dont really want happening on yout Raspberry Pi Kiosk.
+log "Use sed to search throught the Chromium preferences file and clear out any flags that would make the warning bar appear, a behavior you dont really want happening on yout Raspberry Pi Kiosk."
 sed -i 's/"exited_cleanly":false/"exited_cleanly":true/' $preferencesChromiumFile
 sed -i 's/"exit_type":"Crashed"/"exit_type":"Normal"/' $preferencesChromiumFile
 
-log Get values from configuration file
+log "Get values from configuration file"
 url=`echo $(jq .url $fileConfig) | tr -d '"'` 
 zoom=`echo $(jq .zoom $fileConfig) | tr -d '"'` 
 
-log Execute Chromium 
+log "Execute Chromium" 
 /usr/bin/chromium-browser --noerrdialogs --disable-infobars --incognito --start-maximized --kiosk --force-device-scale-factor=$zoom $url &
