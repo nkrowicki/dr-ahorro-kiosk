@@ -32,12 +32,12 @@ latestCommitRemote=`git ls-remote origin -h refs/heads/master | awk '{print $1}'
 latestCommitLocal=`git log -n1 | awk '{print $2}' | head -n 1`
 
 if [ -z "$latestCommitRemote" ]; then
-   log "Error when getting remote commit"
+   log_error "Error when getting remote commit"
    exit 1
 fi
 
 if [ -z "$latestCommitLocal" ]; then
-   log "Error when getting local commit"
+   log_error "Error when getting local commit"
    exit 1
 fi
 
@@ -51,7 +51,7 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    
    log "Add execution permissions to all files with extension .sh"
    chmod +x *.sh
-   
+
    reloadKiosk
 else
    log "No updates are required."
