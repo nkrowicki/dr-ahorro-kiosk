@@ -18,8 +18,8 @@ preferencesChromiumFile="/home/pi/.config/chromium/Default/Preferences"
 
 log "Enable SSH Server"
 if [ ! $(systemctl -q is-active ssh) ]; then
-    systemctl enable ssh
-    systemctl start ssh
+    sudo systemctl enable ssh
+    sudo systemctl start ssh
 fi
 
 # Hide the mouse from the display whenever it has been idle for longer then 0.5 seconds
