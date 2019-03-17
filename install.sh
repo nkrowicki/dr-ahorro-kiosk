@@ -126,6 +126,9 @@ fi
 rm mycron
 
 
+echo "Create fileLog and change owner"
+touch kiosk.log
+chown pi:pi kiosk.log
 
 echo "Add execution permissions"
 chmod +x *.sh
