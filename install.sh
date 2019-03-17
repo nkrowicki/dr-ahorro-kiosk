@@ -52,7 +52,7 @@ apt-get upgrade
 echo "Install xdtotool, unclutter and sed"
 echo "xdotool: Allow our bash script to execute key presses withouth anyone being on the device"
 echo "unclutter: Enable us to hide the mouse from the display"
-apt-get install -y xdotool unclutter sed chromium-browser ttf-mscorefonts-installer x11-xserver-utils pv hdparm htop
+apt-get install -y xdotool unclutter sed chromium-browser ttf-mscorefonts-installer x11-xserver-utils pv hdparm htop jq
 
 echo "Set up autostart config"
 echo "Set up auto login to our user-> Desktop autologin is the default behavior."
@@ -61,12 +61,9 @@ echo "Set up auto login to our user-> Desktop autologin is the default behavior.
 # Go to 3 Boot Options -> B1 Desktop/CLI -> B4 Desktop autologin
 
 echo "On file $autostartFile..."
-echo "Find if exist $xscreensaverLine and comment this line or add"
-if grep -q $xscreensaverLine $autostartFile 
+echo "Check if exist $xscreensaverLine or add"
+if ! grep -q "$xscreensaverLine" "$autostartFile"
 then
-    # code if found
-	sed -i "s/$xscreensaverLine/#&/" $autostartFile
-else
     # code if not found
 	echo $xscreensaverLine >> $autostartFile
 fi
@@ -74,7 +71,7 @@ echo "Line: $xscreensaverLine -> OK"
 
 echo
 echo "Check if exist $pointrpiLine or add"
-if ! grep -q $pointrpiLine $autostartFile 
+if ! grep -q "$pointrpiLine" "$autostartFile" 
 then
     # code if not found
 	echo $pointrpiLine >> $autostartFile
