@@ -105,6 +105,10 @@ zoom=1
 jq '.url = $newVal' --arg newVal $url $fileConfig > tmp.$$.json && mv tmp.$$.json $fileConfig
 jq '.zoom = $newVal' --arg newVal $zoom $fileConfig > tmp.$$.json && mv tmp.$$.json $fileConfig
 
+echo
+echo "Add write permissions to $fileConfig"
+chmod o+w $fileConfig
+
 
 echo
 echo "Add crontab line for run update each 30 minutes"
