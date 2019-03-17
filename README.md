@@ -10,9 +10,15 @@ Proyect developed for Farmacias Dr Ahorro.
 
 Note: This software generates a file called 'kiosk.log' which contains events that happen (errors, warnings and information)
 
-## How to run:
+## How to install:
 Open terminal and run the following command:
 
+git clone https://github.com/nkrowicki/dr-ahorro-kiosk.git && cd dr-ahorro-kiosk && sudo bash install.sh
+
+## How to reinstall:
+Open terminal and run the following command: (replace "DIRECTORY" for the directory where the project is located)
+cd DIRECTORY
+sudo rm -rf dr-ahorro-kiosk/
 git clone https://github.com/nkrowicki/dr-ahorro-kiosk.git && cd dr-ahorro-kiosk && sudo bash install.sh
 
 ## Developer contact
