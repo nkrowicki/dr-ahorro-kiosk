@@ -51,6 +51,7 @@ RETAIN_NUM_LINES=1000
 
 function retainNumLines {
     TMP=$(tail -n $RETAIN_NUM_LINES $LOGFILE 2>/dev/null) && echo "${TMP}" > $LOGFILE
+    return 0;
 }
 
 # End Control Line Section

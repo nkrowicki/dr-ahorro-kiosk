@@ -18,4 +18,5 @@ if [[ $? -ne 0 ]]; then
         log "No connection: Offline"
         exit 1
 fi
+return 0;
 }
