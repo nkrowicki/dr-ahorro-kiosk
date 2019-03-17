@@ -1,5 +1,7 @@
 # Use Raspbian as Website display
 
+Proyect developed for Farmacias Dr Ahorro.
+
 0. Start Raspbian (on Raspberry Pi)
 1. Use the default user
 2. Run this script
