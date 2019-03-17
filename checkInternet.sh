@@ -6,8 +6,8 @@ pathProject=`dirname $(realpath $0)`
 # Cd folder that contain project
 cd $pathProject
 
-# Load quickLog
-source quickLog.sh
+# Load log4bash
+source log4bash.sh
 
 function checkInternet {
 # Check internet and reset wifi interface if is there is not

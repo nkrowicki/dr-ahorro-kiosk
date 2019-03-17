@@ -8,6 +8,8 @@ Proyect developed for Farmacias Dr Ahorro.
 3. Adjust the website url on instalation
 4. If necessary (due to an unresponsive dashboard or a superlarge screen), change the zoom factor on config file (1 = 100%, 0.5 = 50%, 2 = 200%)
 
+Note: This software generates a file called 'kiosk.log' which contains events that happen (errors, warnings and information)
+
 ## How to run:
 Open terminal and run the following command:
 

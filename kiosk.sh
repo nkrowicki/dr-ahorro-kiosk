@@ -7,8 +7,8 @@ pathProject=`dirname $(realpath $0)`
 # Cd folder that contain project
 cd $pathProject
 
-# Load quickLog
-source quickLog.sh
+# Load log4bash
+source log4bash.sh
 
 # Vars
 fileConfig="/home/pi/Desktop/configKiosk.json"
