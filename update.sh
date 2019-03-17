@@ -17,11 +17,6 @@ if [ "$(type -t checkInternet)" != 'function' ]; then
         source checkInternet.sh
 fi
 
-# Load reloadKiosk (only is was not loaded)
-if [ "$(type -t reloadKiosk)" != 'function' ]; then
-        source reloadKiosk.sh
-fi
-
 log "Check for updates..."
 
 # Check internet
@@ -52,7 +47,9 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    log "Add execution permissions to all files with extension .sh"
    chmod +x *.sh
 
-   reloadKiosk
+   log "Reboot System"
+   sudo shutdown -r now
+
 else
    log "No updates are required."
 fi
