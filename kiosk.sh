@@ -39,4 +39,4 @@ url=`echo $(jq .url $fileConfig) | tr -d '"'`
 zoom=`echo $(jq .zoom $fileConfig) | tr -d '"'` 
 
 log Execute Chromium 
-/usr/bin/chromium-browser --noerrdialogs --disable-infobars --incognito --start-maximized --kiosk --force-device-scale-factor=$zoom $website &
+/usr/bin/chromium-browser --noerrdialogs --disable-infobars --incognito --start-maximized --kiosk --force-device-scale-factor=$zoom $url &
