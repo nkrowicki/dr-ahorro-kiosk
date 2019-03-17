@@ -17,8 +17,11 @@ git clone https://github.com/nkrowicki/dr-ahorro-kiosk.git && cd dr-ahorro-kiosk
 
 ## How to reinstall:
 Open terminal and run the following command: (replace "DIRECTORY" for the directory where the project is located)
+
 cd DIRECTORY
+
 sudo rm -rf dr-ahorro-kiosk/
+
 git clone https://github.com/nkrowicki/dr-ahorro-kiosk.git && cd dr-ahorro-kiosk && sudo bash install.sh
 
 ## Developer contact
