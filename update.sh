@@ -42,6 +42,10 @@ if [ -z "$latestCommitLocal" ]; then
 fi
 
 if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
+   # Danger: Git force pull to overwrite local files 
+   log "Start with the update."
+   git fetch --all
+   git reset --hard origin/master
    git pull origin master
    log "Updated Software!"
    reloadKiosk
