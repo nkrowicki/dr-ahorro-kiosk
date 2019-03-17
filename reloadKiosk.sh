@@ -7,8 +7,10 @@ pathProject=`dirname $(realpath $0)`
 # Cd folder that contain project
 cd $pathProject
 
-# Load log4bash
-source log4bash.sh
+# Load log4bash (only is was not loaded)
+if [ "$(type -t log)" != 'function' ]; then
+        source log4bash.sh
+fi
 
 function reloadKiosk {
    pkill -f kiosk.sh

@@ -7,8 +7,10 @@ pathProject=`dirname $(realpath $0)`
 # Cd folder that contain project
 cd $pathProject
 
-# Load log4bash
-source log4bash.sh
+# Load log4bash (only is was not loaded)
+if [ "$(type -t log)" != 'function' ]; then
+        source log4bash.sh
+fi
 
 # Vars
 scriptUpdate="update.sh"
@@ -52,7 +54,7 @@ apt-get upgrade
 echo "Install xdtotool, unclutter and sed"
 echo "xdotool: Allow our bash script to execute key presses withouth anyone being on the device"
 echo "unclutter: Enable us to hide the mouse from the display"
-apt-get install -y xdotool unclutter sed chromium-browser ttf-mscorefonts-installer x11-xserver-utils pv hdparm htop jq
+apt-get install -y xdotool unclutter sed chromium-browser ttf-mscorefonts-installer x11-xserver-utils pv hdparm htop jq vim
 
 echo "Set up autostart config"
 echo "Set up auto login to our user-> Desktop autologin is the default behavior."

@@ -7,14 +7,20 @@ pathProject=`dirname $(realpath $0)`
 # Cd folder that contain project
 cd $pathProject
 
-# Load log4bash
-source log4bash.sh
+# Load log4bash (only is was not loaded)
+if [ "$(type -t log)" != 'function' ]; then
+        source log4bash.sh
+fi
 
-# Load checkInternet
-source checkInternet.sh
+# Load checkInternet (only is was not loaded)
+if [ "$(type -t checkInternet)" != 'function' ]; then
+        source checkInternet.sh
+fi
 
-# Load reloadKiosk
-source reloadKiosk.sh
+# Load reloadKiosk (only is was not loaded)
+if [ "$(type -t reloadKiosk)" != 'function' ]; then
+        source reloadKiosk.sh
+fi
 
 log "Check for updates..."
 
