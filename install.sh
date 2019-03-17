@@ -26,7 +26,7 @@ preferencesChromiumFileBpk+="_bkp_$TODAY"
 fileConfig="/home/pi/Desktop/configKiosk.json"
 
 # Kiosk Script Path
-kioskScript="/home/pi/kiosk.sh"
+kioskScript="${pathProject}/kiosk.sh"
 kioskScriptLine="@bash $kioskScript"
 
 echo "This script install Kiosk to Dr Ahorro"
@@ -80,7 +80,11 @@ echo "Line: $pointrpiLine -> OK"
 
 echo
 echo "Add line to run kiosk script: $kioskScriptLine"
-echo $kioskScriptLine >> $autostartFile
+if ! grep -q "$kioskScriptLine" "$autostartFile" 
+then
+    # code if not found
+    echo $kioskScriptLine >> $autostartFile
+fi
 echo "Line: $kioskScriptLine -> OK"
 
 # Fist: BackupFile Preferences Chromium
