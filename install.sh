@@ -109,8 +109,10 @@ jq '.zoom = $newVal' --arg newVal $zoom $fileConfig > tmp.$$.json && mv tmp.$$.j
 echo
 echo "Add crontab line for run update each 30 minutes"
 crontabLine="*/30 * * * * sudo ${pathProject}/$scriptUpdate"
+crontabLineEscapeCharacters="${crontabLine//\*/\\*}"
+echo "Escape: $crontabLineEscapeCharacters"
 crontab -u pi -l > mycron
-if ! grep -q "$crontabLine" mycron 
+if ! grep -q "$crontabLineEscapeCharacters" mycron 
 then
     # code if not found
     echo "$crontabLine" >> mycron

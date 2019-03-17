@@ -48,6 +48,10 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    git reset --hard origin/master
    git pull origin master
    log "Updated Software!"
+   
+   log "Add execution permissions to all files with extension .sh"
+   chmod +x *.sh
+   
    reloadKiosk
 else
    log "No updates are required."
