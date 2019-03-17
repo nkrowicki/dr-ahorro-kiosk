@@ -23,6 +23,8 @@ if [ ! $(systemctl -q is-active ssh) ]; then
     sudo systemctl enable ssh
     sudo systemctl start ssh
 fi
+log "SSH Server UP!"
+
 
 log "Hide the mouse from the display whenever it has been idle for longer then 0.5 seconds"
 unclutter -idle 0.5 -root &
