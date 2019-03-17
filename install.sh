@@ -104,5 +104,8 @@ echo "*/30 * * * * sudo ${pathProject}/$scriptUpdate" >> mycron
 crontab mycron
 rm mycron
 
+echo "Add execution permissions"
+chmod +x *.sh
+
 echo "Reboot System"
 sudo shutdown -r now
