@@ -98,6 +98,8 @@ echo "Backup Preferences Chromium File -> OK"
 echo 
 echo "Create empty json config file on $fileConfig"
 echo "{}" > $fileConfig
+echo
+echo
 read -p 'Enter URL: ' url
 zoom=1
 jq '.url = $newVal' --arg newVal $url $fileConfig > tmp.$$.json && mv tmp.$$.json $fileConfig
@@ -111,6 +113,7 @@ crontab -u pi -l > mycron
 if ! grep -q "$crontabLine" mycron 
 then
     # code if not found
+    echo "$crontabLine" >> mycron
     crontab -u pi mycron
 fi
 rm mycron
