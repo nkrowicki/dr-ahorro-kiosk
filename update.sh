@@ -39,7 +39,7 @@ fi
 
 if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    # Danger: Git force pull to overwrite local files 
-   log "Copy install.sh to ./"
+   log "Copy install.sh to ./install.sh_BAK"
    cp ./install.sh ./install.sh_BAK
 
    log "Start with the update."
