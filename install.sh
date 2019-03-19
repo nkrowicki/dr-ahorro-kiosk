@@ -135,6 +135,7 @@ else
         echo
         echo "The zoom was found."
         echo "zoom is: $zoom"
+        echo
 fi
 
 jq '.url = $newVal' --arg newVal $url $fileConfig > tmp.$$.json && mv tmp.$$.json $fileConfig
