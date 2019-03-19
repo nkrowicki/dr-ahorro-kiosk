@@ -165,10 +165,12 @@ rm mycron
 
 echo "Create fileLog and change owner"
 touch kiosk.log
-chown pi:pi kiosk.log
 
 echo "Add execution permissions"
 chmod +x *.sh
+
+echo "Change owner of files"
+chown -R pi:pi .
 
 log "End Install.sh ->  Reboot System"
 

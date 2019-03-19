@@ -1,10 +1,18 @@
 #!/bin/bash
 
 # Vars
+
 # Full path of this file without filename
 pathProject=`dirname $(realpath $0)`
-# Flag ti know if the install.sh file has changed (0: not changed - 1: changed)
+
+# Flag to know if the install file has changed (0: not changed - 1: changed)
 flag=0
+
+# Route paths to install file (new and old)
+installFilename="install.sh"
+installNew="./${installFilename}"
+installOld="/home/pi/${installFilename}_Old"
+
 # Cd folder that contain project
 cd $pathProject
 
@@ -42,8 +50,8 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
 
    log "Updates has been found"
 
-   log "Copy install.sh to /home/pi/install.sh_BAK"
-   cp -f ./install.sh /home/pi/install.sh_BAK
+   log "Copy $installNew to $installOld"
+   cp -f $installNew $installOld
 
    log "Start with the update."
    git fetch --all
@@ -53,22 +61,25 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    
    log "Add execution permissions to all files with extension .sh"
    chmod +x *.sh
+
+   echo "Change owner of files"
+   chown -R pi:pi .
    
-   log "Check if install.sh has modified"
-   TEMP=$(diff -q ./install.sh /home/pi/install.sh_BAK)
-   if [ "$?" -eq "1" ]; then
-      log "install.sh has changed"
+   log "Check if $installNew has modified"
+   DIFF=$(diff -q $installNew $installOld)
+   if [ "$DIFF" != "" ]; then
+      log "$installNew has changed"
       flag=1
-      log "Delete /home/pi/install.sh_BAK"
-      rm -f /home/pi/install.sh_BAK
+      log "Delete $installOld"
+      rm -f $installOld
    else
-      log "install.sh it has not changed"
+      log "$installNew it has not changed"
    fi
 
 
    if [ $flag -eq 1 ]; then
-      log "Run install.sh"
-      sudo bash ./install.sh
+      log "Run $installNew"
+      sudo bash $installNew
       exit 0
    else
       log "Reboot System"
