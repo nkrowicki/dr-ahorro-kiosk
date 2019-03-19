@@ -121,6 +121,7 @@ else
         echo
         echo "The URL was found"
         echo "url is: $url"
+        echo
 fi
 
 # zoom: Check if exist or assign default value zoom
