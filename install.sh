@@ -45,12 +45,12 @@ apt-get purge wolfram-engine scratch scratch2 nuscratch sonic-pi idle3 -y
 apt-get purge smartsim java-common minecraft-pi libreoffice* -y
 
 echo "Clean to remove any unnecessary packages"
-apt-get clean
+apt-get clean -y
 apt-get autoremove -y
 
 echo "Update our installation of Raspbian."
-apt-get update
-apt-get upgrade
+apt-get update -y
+apt-get upgrade -y
 
 echo "Install xdtotool, unclutter and sed"
 echo "xdotool: Allow our bash script to execute key presses withouth anyone being on the device"
