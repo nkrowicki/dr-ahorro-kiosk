@@ -42,8 +42,8 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
 
    log "Updates has been found"
 
-   log "Copy install.sh to ~/install.sh_BAK"
-   cp ./install.sh ~/install.sh_BAK
+   log "Copy install.sh to $HOME/install.sh_BAK"
+   cp ./install.sh $HOME/install.sh_BAK
 
    log "Start with the update."
    git fetch --all
@@ -55,12 +55,12 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    chmod +x *.sh
    
    log "Check if install.sh has modified"
-   diff -q ./install.sh ~/install.sh_BAK > /dev/null
+   TEMP=$(diff -q ./install.sh $HOME/install.sh_BAK)
    if [ $? -eq 1 ]; then
       log "install.sh has changed"
       flag=1
-      log "Delete ~/install.sh_BAK"
-      rm -f ~/install.sh_BAK
+      log "Delete $HOME/install.sh_BAK"
+      rm -f $HOME/install.sh_BAK
    else
       log "install.sh it has not changed"
    fi
