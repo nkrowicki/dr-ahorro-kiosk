@@ -118,6 +118,7 @@ if [ -z "$url" ] || [ "$url" == "null" ] ; then
         read -p 'Enter URL: ' url
 else
         # Url exist
+        echo
         echo "The URL was found"
         echo "url is: $url"
 fi
