@@ -113,6 +113,7 @@ fi
 url=$(jq .url $fileConfig | sed -e 's/^"//' -e 's/"$//')
 if [ -z "$url" ] || [ "$url" == "null" ] ; then
         # Url not exist
+        echo
         echo "The URL was not found, please enter the URL"
         read -p 'Enter URL: ' url
 else
