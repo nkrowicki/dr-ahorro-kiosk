@@ -48,6 +48,9 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    git pull origin master
    log "Updated Software!"
    
+   log "Add execution permissions to all files with extension .sh"
+   chmod +x *.sh
+   
    log "Check if install.sh has modified"
    diff -q install.sh /tmp/install.sh > /dev/null
    if [ $? -eq 1 ]; then
@@ -59,8 +62,6 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
       log "install.sh it has not changed"
    fi
 
-   log "Add execution permissions to all files with extension .sh"
-   chmod +x *.sh
 
    if [ $flag -eq 1 ]; then
       log "Run install.sh"
