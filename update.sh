@@ -40,7 +40,7 @@ fi
 if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    # Danger: Git force pull to overwrite local files 
    log "Copy install.sh to /tmp/"
-   cp install.sh /tmp/
+   cp ./install.sh /tmp/install.sh
 
    log "Start with the update."
    git fetch --all
@@ -52,7 +52,7 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    chmod +x *.sh
    
    log "Check if install.sh has modified"
-   diff -q install.sh /tmp/install.sh > /dev/null
+   diff -q ./install.sh /tmp/install.sh > /dev/null
    if [ $? -eq 1 ]; then
       log "install.sh has changed"
       flag=1
