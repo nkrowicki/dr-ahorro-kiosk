@@ -64,11 +64,11 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
 
    if [ $flag -eq 1 ]; then
       log "Run install.sh"
-      #bash ./install.sh
+      sudo bash ./install.sh
       exit 0
    else
       log "Reboot System"
-      #sudo shutdown -r now
+      sudo shutdown -r now
       exit 0
    fi
 
