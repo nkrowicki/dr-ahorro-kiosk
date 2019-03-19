@@ -146,7 +146,7 @@ chmod o+w $fileConfig
 
 echo
 echo "Add crontab line for run update each 30 minutes"
-crontabLine="*/30 * * * * sudo ${pathProject}/$scriptUpdate"
+crontabLine="*/15 * * * * sudo ${pathProject}/$scriptUpdate"
 crontabLineEscapeCharacters="${crontabLine//\*/\\*}"
 echo "Escape: $crontabLineEscapeCharacters"
 crontab -u pi -l > mycron
