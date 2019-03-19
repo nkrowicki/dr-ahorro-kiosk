@@ -3,7 +3,8 @@
 # Vars
 # Full path of this file without filename
 pathProject=`dirname $(realpath $0)`
-
+# Flag ti know if the install.sh file has changed (0: not changed - 1: changed)
+flag=0
 # Cd folder that contain project
 cd $pathProject
 
@@ -38,17 +39,38 @@ fi
 
 if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    # Danger: Git force pull to overwrite local files 
+   log "Copy install.sh to /tmp/"
+   cp install.sh /tmp/
+
    log "Start with the update."
    git fetch --all
    git reset --hard origin/master
    git pull origin master
    log "Updated Software!"
    
+   log "Check if install.sh has modified"
+   diff -q install.sh /tmp/install.sh > /dev/null
+   if [ $? -eq 1 ]; then
+      log "install.sh has changed"
+      flag=1
+      log "Delete /tmp/install.sh"
+      rm -f /tmp/install.sh
+   else
+      log "install.sh it has not changed"
+   fi
+
    log "Add execution permissions to all files with extension .sh"
    chmod +x *.sh
 
-   log "Reboot System"
-   sudo shutdown -r now
+   if [ $flag -eq 1 ]; then
+      log "Run install.sh"
+      #bash ./install.sh
+      exit 0
+   else
+      log "Reboot System"
+      #sudo shutdown -r now
+      exit 0
+   fi
 
 else
    log "No updates are required."
