@@ -95,19 +95,49 @@ echo "Backup file $preferencesChromiumFile to $preferencesChromiumFileBpk"
 cp -f $preferencesChromiumFile $preferencesChromiumFileBpk
 echo "Backup Preferences Chromium File -> OK"
 
+# Check if $fileConfig file exist
+if [ -f "$fileConfig" ]
+then
+        echo "$fileConfig found."
+else
+        echo "$fileConfig not found, we will not create a new config file."
+        echo 
+        echo "Create empty json config file on $fileConfig"
+        echo "{}" > $fileConfig
+        echo
+        echo
+fi
 
-echo 
-echo "Create empty json config file on $fileConfig"
-echo "{}" > $fileConfig
-echo
-echo
-read -p 'Enter URL: ' url
-zoom=1
+# url: Check if exist or assign new URL
+# Obtain value from $fileConfig and delete first and last double quotes, then assign the result to url var
+url=$(jq .url $fileConfig | sed -e 's/^"//' -e 's/"$//')
+if [ -z "$url" ] || [ "$url" == "null" ] ; then
+        # Url not exist
+        echo "The URL was not found, please enter the URL"
+        read -p 'Enter URL: ' url
+else
+        # Url exist
+        echo "The URL was found"
+        echo "url is: $url"
+fi
+
+# zoom: Check if exist or assign default value zoom
+# Obtain value from $fileConfig and delete first and last double quotes, then assign the result to zoom var
+zoom=$(jq .zoom $fileConfig | sed -e 's/^"//' -e 's/"$//')
+if [ -z "$zoom" ] || [ "$zoom" == "null" ] ; then
+        # zoom not exist
+        zoom=1
+else
+        # zoom exist
+        echo "The zoom was found."
+        echo "zoom is: $zoom"
+fi
+
 jq '.url = $newVal' --arg newVal $url $fileConfig > tmp.$$.json && mv tmp.$$.json $fileConfig
 jq '.zoom = $newVal' --arg newVal $zoom $fileConfig > tmp.$$.json && mv tmp.$$.json $fileConfig
 
 echo
-echo "Add write permissions to $fileConfig"
+echo "Add write permissions to $fileConfig so that later a user can modify it."
 chmod o+w $fileConfig
 
 
