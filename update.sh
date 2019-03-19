@@ -56,7 +56,7 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    
    log "Check if install.sh has modified"
    TEMP=$(diff -q ./install.sh /home/pi/install.sh_BAK)
-   if [ $? -eq 1 ]; then
+   if [ "$? -eq "1" ]; then
       log "install.sh has changed"
       flag=1
       log "Delete /home/pi/install.sh_BAK"
