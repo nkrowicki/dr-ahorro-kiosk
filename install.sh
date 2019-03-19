@@ -131,6 +131,7 @@ if [ -z "$zoom" ] || [ "$zoom" == "null" ] ; then
         zoom=1
 else
         # zoom exist
+        echo
         echo "The zoom was found."
         echo "zoom is: $zoom"
 fi
