@@ -15,6 +15,9 @@ fi
 log "Start Install.sh"
 
 # Vars
+
+fileLog="kiosk.log"
+
 scriptUpdate="update.sh"
 TODAY=$(date +%F)
 autostartFile="/etc/xdg/lxsession/LXDE-pi/autostart"
@@ -163,8 +166,14 @@ fi
 rm mycron
 
 
-echo "Create fileLog and change owner"
-touch kiosk.log
+echo "Create fileLog only if not exist"
+if [ ! -f $fileLog ]; then
+    echo
+    echo "fileLog not found!"
+    echo "Create fileLog ($fileLog)"
+    echo
+    touch $fileLog
+fi
 
 echo "Add execution permissions"
 chmod +x *.sh
