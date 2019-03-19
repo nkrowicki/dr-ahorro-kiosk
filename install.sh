@@ -143,6 +143,7 @@ jq '.zoom = $newVal' --arg newVal $zoom $fileConfig > tmp.$$.json && mv tmp.$$.j
 
 echo
 echo "Add write permissions to $fileConfig so that later a user can modify it."
+echo
 chmod o+w $fileConfig
 
 
