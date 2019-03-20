@@ -165,8 +165,8 @@ then
 fi
 rm mycron
 
-
-echo "Create fileLog only if not exist"
+# Create $fileLog only if not exist
+echo "Create fileLog ($fileLog) only if not exist"
 if [ ! -f $fileLog ]; then
     echo
     echo "fileLog not found!"
