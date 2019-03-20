@@ -76,7 +76,7 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
       log "$installNew it has not changed"
    fi
 
-
+   # If install has modified
    if [ $flag -eq 1 ]; then
       log "Run $installNew"
       sudo bash $installNew
