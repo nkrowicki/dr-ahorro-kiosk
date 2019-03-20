@@ -66,8 +66,8 @@ if [ "$latestCommitRemote" != "$latestCommitLocal" ]; then
    chown -R pi:pi .
    
    log "Check if $installNew has modified"
-   DIFF=$(diff -q $installNew $installOld)
-   if [ "$DIFF" != "" ]; then
+   if ! cmp $installNew $installOld > /dev/null 2>&1
+   then
       log "$installNew has changed"
       flag=1
       log "Delete $installOld"
