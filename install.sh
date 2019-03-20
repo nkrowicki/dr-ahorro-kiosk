@@ -181,6 +181,7 @@ chmod +x *.sh
 echo "Change owner of files"
 chown -R pi:pi .
 
+# End install
 log "End Install.sh ->  Reboot System"
 
 echo "Reboot System"
