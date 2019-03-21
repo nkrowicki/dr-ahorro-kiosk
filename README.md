@@ -4,9 +4,10 @@ Proyect developed for Farmacias Dr Ahorro.
 
 0. Start Raspbian (on Raspberry Pi)
 1. Use the default user
-2. Run this script
-3. Adjust the website url on instalation
-4. If necessary (due to an unresponsive dashboard or a superlarge screen), change the zoom factor on config file (1 = 100%, 0.5 = 50%, 2 = 200%)
+2. Disable overscan: edit /boot/config.txt and put "disable_overscan" in 1 (disable_overscan=1)
+3. Run this script
+4. Adjust the website url on instalation
+5. If necessary (due to an unresponsive dashboard or a superlarge screen), change the zoom factor on config file (1 = 100%, 0.5 = 50%, 2 = 200%)
 
 Note: This software generates a file called 'kiosk.log' which contains events that happen (errors, warnings and information)
 
